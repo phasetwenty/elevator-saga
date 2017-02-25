@@ -23,28 +23,33 @@ var x = {
         self._floor_button_pressed(floor, allDestinations);
         self._log('Global request queue is: ' + allDestinations.toString());
       });
-
-      // elevators.forEach(function(elevator, index, arr) {
-      //   elevator.on('idle', function() {
-      //     floors.forEach(function (floor) {
-      //       elevator.goToFloor(floor.floorNum());
-      //     });
-      //   });
-      // });
     });
   },
+
   update: function(dt, elevators, floors) {
     // We normally don't need to do anything here
   },
 
+  _elevator_floor_button_pressed: function(elevator, floorNum, allDestinations) {
+    this._log('Elevator floor button pressed.');
+
+    var nextFloor = this._pick_a_floor(elevator, allDestinations);
+    elevator.goToFloor(nextFloor);
+    this._log('Sending elevator to floor ' + nextFloor, elevator);
+  },
+
   _elevator_idle: function(elevator, allDestinations) {
     this._log('Idle.', elevator);
-    var floorNum = allDestinations.shift();
+
+    var floorNum = this._pick_a_floor(elevator, allDestinations);
+
     if (floorNum === undefined) {
+      this._log('Nothing to do.', elevator);
       return;
     }
-    this._log('Sending elevator to floor ' + floorNum, elevator);
+
     elevator.goToFloor(floorNum);
+    this._log('Sending elevator to floor ' + floorNum, elevator);
   },
 
   _floor_button_pressed: function(floor, allDestinations) {
@@ -55,6 +60,15 @@ var x = {
     } else {
       this._log('Received a request for ' + floorNum + ' but it\'s already in the queue.', floor);
     }
+  },
+
+  _pick_a_floor: function(elevator, allDestinations) {
+    var floorNum = undefined;
+    [elevator.destinationQueue, allDestinations].some(function(queue) {
+      floorNum = queue.shift();
+      return floorNum !== undefined;
+    });
+    return floorNum;
   },
 
   _log: function(message, obj) {
