@@ -62,6 +62,17 @@ var x = {
     }
   },
 
+  /**
+   *
+   * @param elevator Elevator instance to decide a destination for.
+   * @param passengerLocations Array of floor numbers where passengers have pressed up or down.
+   * @param directionToCheck "up" or "down", the direction to look for destinations.
+   * @private
+   **/
+  _get_next_destination: function(elevator, passengerLocations, directionToCheck) {
+    var currentDirection = elevator.destinationDirection(), currentFloor = elevator.currentFloor();
+  },
+
   _pick_a_floor: function(elevator, allDestinations) {
     var floorNum = undefined;
     [elevator.destinationQueue, allDestinations].some(function(queue) {
