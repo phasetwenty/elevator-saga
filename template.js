@@ -1,4 +1,4 @@
-{
+var x = {
   init: function(elevators, floors) {
     var elevator = elevators[0]; // Let's use the first elevator
 
@@ -12,4 +12,4 @@
   update: function(dt, elevators, floors) {
     // We normally don't need to do anything here
   }
-}
+};
