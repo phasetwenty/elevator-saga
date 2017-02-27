@@ -91,4 +91,4 @@ var x = {
       console.log(type + ' ' + id + ': ' + message);
     }
   }
-}
+};

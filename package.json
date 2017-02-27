@@ -1,0 +1,24 @@
+{
+  "name": "elevator-saga",
+  "version": "1.0.0",
+  "description": "Set of solutions for the Elevator Saga programming exercise.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phasetwenty/elevator-saga.git"
+  },
+  "author": "Christopher Haverman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phasetwenty/elevator-saga/issues"
+  },
+  "homepage": "https://github.com/phasetwenty/elevator-saga#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7"
+  }
+}
